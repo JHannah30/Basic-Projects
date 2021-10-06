@@ -49,6 +49,12 @@ function App() {
   // Result announcement after each round
   const [result, setResult] = useState("");
 
+  const outcome = {
+    win: "You win!",
+    lose: "You lose!",
+    draw: "It's a tie!",
+  }
+
 
   const beginGame = () => {
     setCurrentNumber(Math.floor( Math.random() * 10 ) + 1);
@@ -57,14 +63,14 @@ function App() {
   const handleHigher = () => {
     setNewNumber(Math.floor( Math.random() * 10 ) + 1);
     if(newNumber > currentNumber){
-      setResult("You win.")
+      setResult(outcome.win)
       setWinStreak(winStreak => winStreak + 1);
       setCurrentNumber(newNumber);
     } else if (newNumber === currentNumber){
-      setResult("It's a tie. Try again.")
+      setResult(outcome.draw)
       setCurrentNumber(newNumber);
     } else {
-      setResult("You lose.")
+      setResult(outcome.lose)
       setCurrentNumber(newNumber);
     }
   }
@@ -72,14 +78,14 @@ function App() {
   const handleLower = () => {
     setNewNumber(Math.floor( Math.random() * 10 ) + 1);
     if(newNumber < currentNumber){
-      setResult("You win.")
+      setResult(outcome.win)
       setWinStreak(winStreak => winStreak + 1);
       setCurrentNumber(newNumber);
     } else if (newNumber === currentNumber){
-      setResult("It's a tie. Try again.");
+      setResult(outcome.draw);
       setCurrentNumber(newNumber);
     } else {
-      setResult("You lose.")
+      setResult(outcome.lose)
       setCurrentNumber(newNumber);
     }
   }
