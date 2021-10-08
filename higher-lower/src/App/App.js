@@ -1,5 +1,6 @@
-import { useState, useReducer } from 'react';
+import { useState } from 'react';
 import './App.css';
+import StartPage from '../StartPage/StartPage';
 import ActionButton from '../ActionButton/ActionButton';
 
 function App() {
@@ -50,18 +51,21 @@ function App() {
   const [result, setResult] = useState("");
 
   const outcome = {
-    win: "You win!",
-    lose: "You lose!",
-    draw: "It's a tie!",
+    win: "Correct.",
+    lose: "Wrong.",
+    draw: "Try again.",
   }
 
+  const getRandomNumber = () => {
+    return Math.floor( Math.random() * 10 ) + 1;
+  }
 
   const beginGame = () => {
-    setCurrentNumber(Math.floor( Math.random() * 10 ) + 1);
+    setCurrentNumber(getRandomNumber());
   }
 
-  const handleHigher = () => {
-    setNewNumber(Math.floor( Math.random() * 10 ) + 1);
+  function handleHigher() {
+    setNewNumber(getRandomNumber());
     if(newNumber > currentNumber){
       setResult(outcome.win)
       setWinStreak(winStreak => winStreak + 1);
@@ -75,8 +79,8 @@ function App() {
     }
   }
 
-  const handleLower = () => {
-    setNewNumber(Math.floor( Math.random() * 10 ) + 1);
+  function handleLower(){
+    setNewNumber(getRandomNumber());
     if(newNumber < currentNumber){
       setResult(outcome.win)
       setWinStreak(winStreak => winStreak + 1);
@@ -92,10 +96,9 @@ function App() {
   
   return (
     <div>
-      <h1>Let's play Higher or Lower!</h1>
-      <button onClick={beginGame}>Let's start!</button>
-      <h1>{currentNumber}</h1>
-      <h2>{result}</h2>
+      <StartPage startGame={beginGame}/>
+      <h2>{currentNumber}</h2>
+      <span>{result}</span>
       <div>
         <ActionButton 
           handleResult={handleHigher}
