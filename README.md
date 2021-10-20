@@ -32,10 +32,8 @@ Another game for the all-time list of golden oldies, but with a twist! Just kidd
 
 
 ### The Rules
-Choose an action - Rock, Paper or Scissors. Each action is strong and weak against another action. The objective is to choose an action that is strong against your opponents action. Do that for enough rounds and you've won! Remember:
+Choose an action - Rock, Paper or Scissors. Each action is strong and weak against another action. The objective is to choose an action that is strong against your opponents action. Do that for enough rounds and you've won! If you guess the same action as your opponent, it's  draw. Remember:
 
 * Rock > Scissors
 * Scissors > Paper
 * Paper > Rock
-
-If you guess the same action as your opponent, it's  draw.
