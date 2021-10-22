@@ -21,7 +21,7 @@ We're all familiar with this game - it's a golden oldie!
 
 Simply guess if the upcoming number is higher or lower than the number currently being displayed. If you guessed incorrectly, you lose. If you guessed correctly, you don't lose (for now). If the number is the same, you get to guess again. 
 
-Normally, you'd be playing for some sort of money but unfortunately, I'm still working on the next big cryptocurrency and it's a way off, so you'll have to wait. In the meantime, beating your high score will have to do.
+Normally, you'd be playing for some sort of money but unfortunately, I'm still working on the next big cryptocurrency and it's a way off, so that'll have to wait. In the meantime, beating your high score will have to do.
 
 
 ---
