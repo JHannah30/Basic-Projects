@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import StartPage from '../StartPage/StartPage';
-import ActionButton from '../ActionButton/ActionButton';
+import StartScreen from '../StartScreen/StartScreen';
+import GameScreen from '../GameScreen/GameScreen';
 
 function App() {
   
@@ -34,6 +34,10 @@ function App() {
   //   - Winning streak/High score displayed
   //   - Previous numbers displayed 
 
+  // Logic to determine which screen should be displayed
+  const [hideGameScreen, setHideGameScreen] = useState(true);
+
+
 
   // Current number being displayed
   const [currentNumber, setCurrentNumber] = useState("");
@@ -62,6 +66,7 @@ function App() {
 
   const beginGame = () => {
     setCurrentNumber(getRandomNumber());
+    setHideGameScreen(false);
   }
 
   function handleHigher() {
@@ -96,19 +101,14 @@ function App() {
   
   return (
     <div>
-      <StartPage startGame={beginGame}/>
-      <h2>{currentNumber}</h2>
-      <span>{result}</span>
-      <div>
-        <ActionButton 
-          handleResult={handleHigher}
-          action="Higher"
-        />
-        <ActionButton 
-          handleResult={handleLower}
-          action= "Lower"
-        />
-      </div>
+      {hideGameScreen === true ? 
+      <StartScreen startGame={beginGame} /> :
+      <GameScreen 
+        currentNumber={currentNumber}
+        result={result}
+        handleHigher={handleHigher}
+        handleLower={handleLower}
+      />}
     </div>
   );
 }
