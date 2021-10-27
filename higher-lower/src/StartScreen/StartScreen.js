@@ -15,6 +15,5 @@ function StartPage(props){
         </div>
      );
 };
-//test
  
 export default StartPage;

@@ -37,7 +37,8 @@ function App() {
   // Logic to determine which screen should be displayed
   const [hideGameScreen, setHideGameScreen] = useState(true);
 
-
+  // 
+  const [screenTransition, setScreenTransition] = useState(false);
 
   // Current number being displayed
   const [currentNumber, setCurrentNumber] = useState("");
@@ -59,16 +60,24 @@ function App() {
     lose: "Wrong.",
     draw: "Try again.",
   }
+  
+  const handleScreenTransition = () => {
+    setScreenTransition(true);
+  }
+
+  // When the 'start' button is clicked, the start screen begins to fade out and the game screen fades in. A random number is also generated.
+  const handleGameStart = () => {
+    handleScreenTransition();
+    setTimeout(() => {
+      setHideGameScreen(false)
+    }, 1500);
+    setCurrentNumber(getRandomNumber());
+  }
 
   const getRandomNumber = () => {
     return Math.floor( Math.random() * 10 ) + 1;
   }
-
-  const beginGame = () => {
-    setCurrentNumber(getRandomNumber());
-    setHideGameScreen(false);
-  }
-
+  
   function handleHigher() {
     setNewNumber(getRandomNumber());
     if(newNumber > currentNumber){
@@ -100,9 +109,9 @@ function App() {
   }
   
   return (
-    <div>
+    <div className={screenTransition === true? "fadeOutAndIn" : null}>
       {hideGameScreen === true ? 
-      <StartScreen startGame={beginGame} /> :
+      <StartScreen startGame={handleGameStart} /> :
       <GameScreen 
         currentNumber={currentNumber}
         result={result}
