@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import StartScreen from '../StartScreen/StartScreen';
 import GameScreen from '../GameScreen/GameScreen';
+// 
 
 // Playingcard images 
 import playingCard1 from '../Images/card-1-lightMode.png';
@@ -53,6 +54,7 @@ function App() {
   const [screenTransition, setScreenTransition] = useState(false);
 
   // Game numbers being displayed on screen
+  const [newNumber, setNewNumber] = useState("");
   const [currentNumber, setCurrentNumber] = useState("");
   const [previousNumber, setPreviousNumber] = useState("");
   const [pastNumberList, setPastNumberList] = useState([]);
@@ -75,11 +77,12 @@ function App() {
   }
 
   const handleGameReset = () => {
-    setCurrentNumber("");
+    setNewNumber("");
     setPreviousNumber("");
-    setResult("");
+    setCurrentNumber("");
     setPastNumberList("");
     setWinStreak("");
+    setResult("");
   }
 
   // Images of playing cards that will be rendered according to the number being displayed
@@ -102,8 +105,8 @@ function App() {
     handleScreenTransition();
     setTimeout(() => {
       setHideGameScreen(false)
+      setCurrentNumber(getRandomNumber);
     }, 1000);
-    setCurrentNumber(getRandomNumber);
   }
 
   // When user exits the game by clicking the 'back' button, the game screen fades out, the game is reset and the start screen is visible again
@@ -120,13 +123,8 @@ function App() {
   }
   
   function handleHigher() {
-    console.log('previous number starts off as: ' + previousNumber)
-    console.log('current number starts off as: ' + currentNumber)
     setPreviousNumber(currentNumber);
-    console.log('previous number has been changed to current number: ' + previousNumber)
-
     setCurrentNumber(getRandomNumber);
-    console.log('current number now has a new, random number: ' + currentNumber)
 
     if(previousNumber > currentNumber){
       setResult(outcome.win)
