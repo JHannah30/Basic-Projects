@@ -34,35 +34,36 @@ function App() {
   //   - Winning streak/High score displayed
   //   - Previous numbers displayed 
 
-  // Logic to determine which screen should be displayed
+  // Hide/Show game screen
   const [hideGameScreen, setHideGameScreen] = useState(true);
 
-  // 
+  // Triggers CSS transitioning to move between pages
   const [screenTransition, setScreenTransition] = useState(false);
 
-  // Current number being displayed
   const [currentNumber, setCurrentNumber] = useState("");
-
-  // New number being displayed
   const [newNumber, setNewNumber] = useState("");
-
-  // Winning streak of current game
-  const [winStreak, setWinStreak] = useState(0);
-
-  // All previous numbers of the current game
   const [previousNumbers, setPreviousNumbers] = useState([]);
+  const [winStreak, setWinStreak] = useState(0);
   
   // Result announcement after each round
   const [result, setResult] = useState("");
-
   const outcome = {
     win: "Correct.",
     lose: "Wrong.",
     draw: "Try again.",
   }
   
+  // Triggers CSS transitioning to move between pages
   const handleScreenTransition = () => {
     setScreenTransition(true);
+  }
+
+
+  const handleGameReset = () => {
+    setCurrentNumber("");
+    setNewNumber("");
+    setPreviousNumbers("");
+    setWinStreak("");
   }
 
   // When the 'start' button is clicked, the start screen begins to fade out and the game screen fades in. A random number is also generated.
@@ -72,6 +73,15 @@ function App() {
       setHideGameScreen(false)
     }, 1500);
     setCurrentNumber(getRandomNumber());
+  }
+
+  // When user exits the game by clicking the 'back' button, the game screen fades out, the game is reset and the start screen is visible again
+  const handleGameExit = () => {
+    handleScreenTransition();
+    setTimeout(() => {
+      setHideGameScreen(true)
+    }, 1500);
+    handleGameReset();
   }
 
   const getRandomNumber = () => {
@@ -117,6 +127,7 @@ function App() {
         result={result}
         handleHigher={handleHigher}
         handleLower={handleLower}
+        exitGame={handleGameExit}
       />}
     </div>
   );
