@@ -1,3 +1,7 @@
+body {
+  color: #18191a;
+}
+
 .fadeOutAndIn {
   animation: fadeoutin 3s linear 1 forwards;
 }

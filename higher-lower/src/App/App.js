@@ -56,6 +56,9 @@ function App() {
   // Triggers CSS transitioning to move between pages
   const handleScreenTransition = () => {
     setScreenTransition(true);
+    setTimeout(() => {
+      setScreenTransition(false)
+    }, 1500);
   }
 
 
