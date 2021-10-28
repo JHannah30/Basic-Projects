@@ -3,7 +3,12 @@ body {
 }
 
 .fadeOutAndIn {
-  animation: fadeoutin 3s linear 1 forwards;
+  animation: fadeoutin 2s linear 1 forwards;
+}
+
+/* Empty class that is used to replace the .fadeInAndOut class when a function is called */
+.empty {
+  width: auto;
 }
 
 @keyframes fadeoutin {

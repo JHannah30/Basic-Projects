@@ -58,7 +58,7 @@ function App() {
     setScreenTransition(true);
     setTimeout(() => {
       setScreenTransition(false)
-    }, 1500);
+    }, 2000);
   }
 
 
@@ -74,7 +74,7 @@ function App() {
     handleScreenTransition();
     setTimeout(() => {
       setHideGameScreen(false)
-    }, 1500);
+    }, 1000);
     setCurrentNumber(getRandomNumber());
   }
 
@@ -83,7 +83,7 @@ function App() {
     handleScreenTransition();
     setTimeout(() => {
       setHideGameScreen(true)
-    }, 1500);
+    }, 1000);
     handleGameReset();
   }
 
@@ -122,7 +122,7 @@ function App() {
   }
   
   return (
-    <div className={screenTransition === true? "fadeOutAndIn" : null}>
+    <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
       {hideGameScreen === true ? 
       <StartScreen startGame={handleGameStart} /> :
       <GameScreen 
