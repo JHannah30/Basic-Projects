@@ -3,6 +3,18 @@ import './App.css';
 import StartScreen from '../StartScreen/StartScreen';
 import GameScreen from '../GameScreen/GameScreen';
 
+// Playingcard images 
+import playingCard1 from '../Images/card-1-lightMode.png';
+import playingCard2 from '../Images/card-2-lightMode.png';
+import playingCard3 from '../Images/card-3-lightMode.png';
+import playingCard4 from '../Images/card-4-lightMode.png';
+import playingCard5 from '../Images/card-5-lightMode.png';
+import playingCard6 from '../Images/card-6-lightMode.png';
+import playingCard7 from '../Images/card-7-lightMode.png';
+import playingCard8 from '../Images/card-8-lightMode.png';
+import playingCard9 from '../Images/card-9-lightMode.png';
+import playingCard10 from '../Images/card-10-lightMode.png';
+
 function App() {
   
   // Game structure:
@@ -40,17 +52,18 @@ function App() {
   // Triggers CSS transitioning to move between pages
   const [screenTransition, setScreenTransition] = useState(false);
 
+  // Game numbers being displayed on screen
   const [currentNumber, setCurrentNumber] = useState("");
-  const [newNumber, setNewNumber] = useState("");
-  const [previousNumbers, setPreviousNumbers] = useState([]);
+  const [previousNumber, setPreviousNumber] = useState("");
+  const [pastNumberList, setPastNumberList] = useState([]);
   const [winStreak, setWinStreak] = useState(0);
   
   // Result announcement after each round
   const [result, setResult] = useState("");
   const outcome = {
-    win: "Correct.",
-    lose: "Wrong.",
-    draw: "Try again.",
+    win: "You guessed correctly.",
+    lose: "You guessed incorrectly",
+    draw: "It's a tie. Try again!",
   }
   
   // Triggers CSS transitioning to move between pages
@@ -61,13 +74,28 @@ function App() {
     }, 2000);
   }
 
-
   const handleGameReset = () => {
     setCurrentNumber("");
-    setNewNumber("");
-    setPreviousNumbers("");
+    setPreviousNumber("");
+    setResult("");
+    setPastNumberList("");
     setWinStreak("");
   }
+
+  // Images of playing cards that will be rendered according to the number being displayed
+  const cards = [
+    "",
+    playingCard1,
+    playingCard2,
+    playingCard3,
+    playingCard4,
+    playingCard5,
+    playingCard6,
+    playingCard7,
+    playingCard8,
+    playingCard9,
+    playingCard10,
+  ];
 
   // When the 'start' button is clicked, the start screen begins to fade out and the game screen fades in. A random number is also generated.
   const handleGameStart = () => {
@@ -75,7 +103,7 @@ function App() {
     setTimeout(() => {
       setHideGameScreen(false)
     }, 1000);
-    setCurrentNumber(getRandomNumber());
+    setCurrentNumber(getRandomNumber);
   }
 
   // When user exits the game by clicking the 'back' button, the game screen fades out, the game is reset and the start screen is visible again
@@ -83,8 +111,8 @@ function App() {
     handleScreenTransition();
     setTimeout(() => {
       setHideGameScreen(true)
+      handleGameReset();
     }, 1000);
-    handleGameReset();
   }
 
   const getRandomNumber = () => {
@@ -92,41 +120,51 @@ function App() {
   }
   
   function handleHigher() {
-    setNewNumber(getRandomNumber());
-    if(newNumber > currentNumber){
+    console.log('previous number starts off as: ' + previousNumber)
+    console.log('current number starts off as: ' + currentNumber)
+    setPreviousNumber(currentNumber);
+    console.log('previous number has been changed to current number: ' + previousNumber)
+
+    setCurrentNumber(getRandomNumber);
+    console.log('current number now has a new, random number: ' + currentNumber)
+
+    if(previousNumber > currentNumber){
       setResult(outcome.win)
       setWinStreak(winStreak => winStreak + 1);
-      setCurrentNumber(newNumber);
-    } else if (newNumber === currentNumber){
+      console.log('win')
+    } else if (previousNumber === currentNumber){
       setResult(outcome.draw)
-      setCurrentNumber(newNumber);
+      console.log('draw')
     } else {
       setResult(outcome.lose)
-      setCurrentNumber(newNumber);
+      console.log('draw')
     }
   }
 
   function handleLower(){
-    setNewNumber(getRandomNumber());
-    if(newNumber < currentNumber){
+    setPreviousNumber(currentNumber);
+    setCurrentNumber(getRandomNumber);
+
+    if(previousNumber < currentNumber){
       setResult(outcome.win)
       setWinStreak(winStreak => winStreak + 1);
-      setCurrentNumber(newNumber);
-    } else if (newNumber === currentNumber){
+    } else if (previousNumber === currentNumber){
       setResult(outcome.draw);
-      setCurrentNumber(newNumber);
     } else {
       setResult(outcome.lose)
-      setCurrentNumber(newNumber);
     }
   }
-  
+
+
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
       {hideGameScreen === true ? 
       <StartScreen startGame={handleGameStart} /> :
       <GameScreen 
+        previousNumber={previousNumber}
         currentNumber={currentNumber}
+        previousCard={cards[previousNumber]}
+        currentCard={cards[currentNumber]}
         result={result}
         handleHigher={handleHigher}
         handleLower={handleLower}
