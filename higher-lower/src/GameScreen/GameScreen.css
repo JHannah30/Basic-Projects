@@ -1,15 +1,53 @@
+/* Styling for all elements in the navigation section */
+
 .hl-game-nav-container {
   width: 100%;
-  height: 100px;
+  height: 140px;
   display: flex;
   justify-content: space-between;
-  background-color: burlywood;
+  align-items: center;
+  /* background-color: burlywood; */
 }
 
 .hl-game-nav-item {
-  width: 400px;
-  background-color: chocolate;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  /* background-color: chocolate; */
 }
+
+.hl-exit-game-button {
+  width: 180px;
+  height: 45px;
+  border: solid 2.5px #18191a;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #18191a;
+  background-color: #ffffff;
+  transition: transform 0.4s ease-in-out;
+}
+
+.hl-exit-game-button_img {
+  width: 40px;
+}
+
+.hl-exit-game-button:hover {
+  color: #ffffff;
+  background-color: #18191a;
+}
+
+.hl-game-score-bg {
+  border-radius: 50px 0 0 50px;
+  color: #ffffff;
+  background-color: #18191a;
+}
+
+.hl-game-score {
+  margin-left: -60px;
+  font-size: 1.2rem;
+}
+
+/* Styling for all elements in the main section */
 
 .hl-game-container {
   width: 100vw;

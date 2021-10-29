@@ -1,16 +1,22 @@
 import ActionButton from '../ActionButton/ActionButton';
 import './GameScreen.css';
+import HlLogoNav from '../Images/higher-lower-logo-lightMode-small.png';
 
 function StartPage(props){
+
+    let buttonText = "Back to menu";
     
     return ( 
         <div>
-            <nav className="hl-game-nav-container" onClick={props.exitGame}>
+            <nav className="hl-game-nav-container">
                 <div className="hl-game-nav-item">
-                    <button className="hl-exit-game-button">Back</button>
+                    <button className="hl-exit-game-button" onClick={props.exitGame}>{buttonText}</button>
                 </div>
                 <div className="hl-game-nav-item">
-                    <h4>Score: {props.score}</h4>
+                    <img src={HlLogoNav} alt="Higher or Lower logo" />
+                </div>
+                <div className="hl-game-nav-item hl-game-score-bg">
+                    <h4 className="hl-game-score">Score:</h4>
                 </div>
             </nav>
             <section className="hl-game-container">
