@@ -153,14 +153,6 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    console.log(`Current number is: ${currentNumber}`)
-    console.log(`Previous number is: ${previousNumber}`)
-    console.log(`Outcome is: ${result}`)
-  }, [currentNumber, previousNumber, result]);
-  
-
-
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
       {hideGameScreen === true ? 
