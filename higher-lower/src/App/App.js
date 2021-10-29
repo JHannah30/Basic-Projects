@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import StartScreen from '../StartScreen/StartScreen';
 import GameScreen from '../GameScreen/GameScreen';
@@ -15,6 +15,7 @@ import playingCard7 from '../Images/card-7-lightMode.png';
 import playingCard8 from '../Images/card-8-lightMode.png';
 import playingCard9 from '../Images/card-9-lightMode.png';
 import playingCard10 from '../Images/card-10-lightMode.png';
+import playingCard11 from '../Images/card-11-lightMode.png';
 
 function App() {
   
@@ -79,7 +80,7 @@ function App() {
     setPreviousNumber("");
     setCurrentNumber("");
     setPastNumbersList("");
-    setScore("");
+    setScore(0);
     setResult("");
   }
 
@@ -96,6 +97,7 @@ function App() {
     playingCard8,
     playingCard9,
     playingCard10,
+    playingCard11,
   ];
 
   // When the 'start' button is clicked, the start screen begins to fade out and the game screen fades in. A random number is also generated.
@@ -104,6 +106,7 @@ function App() {
     setTimeout(() => {
       setHideGameScreen(false)
       setCurrentNumber(getRandomNumber);
+      console.log(currentNumber);
     }, 1000);
   }
 
@@ -120,7 +123,7 @@ function App() {
     return Math.floor( Math.random() * 10 ) + 1;
   }
   
-  function handleHigher() {
+  const handleHigher = () => {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber);
 
@@ -135,7 +138,7 @@ function App() {
     }
   }
 
-  function handleLower(){
+  const handleLower = () => {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber);
 
@@ -150,6 +153,13 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    console.log(`Current number is: ${currentNumber}`)
+    console.log(`Previous number is: ${previousNumber}`)
+    console.log(`Outcome is: ${result}`)
+  }, [currentNumber, previousNumber, result]);
+  
+
 
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
@@ -158,9 +168,10 @@ function App() {
       <GameScreen 
         previousNumber={previousNumber}
         currentNumber={currentNumber}
+        placeholderCard={cards[11]}
         previousCard={cards[previousNumber]}
         currentCard={cards[currentNumber]}
-        nextCard={cards[0]}
+        guessCard={cards[0]}
         score={score}
         result={result}
         handleHigher={handleHigher}
