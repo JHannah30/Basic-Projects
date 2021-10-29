@@ -1,19 +1,26 @@
 import ActionButton from '../ActionButton/ActionButton';
 import './GameScreen.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 function StartPage(props){
     
     return ( 
         <div>
-            <nav className="hl-exit" onClick={props.exitGame}>
-                <button className="hl-exit-game-button">Back</button>
+            <nav className="hl-game-nav-container" onClick={props.exitGame}>
+                <div className="hl-game-nav-item">
+                    <button className="hl-exit-game-button"><img src={props.currentNumber} alt="Back arrow" />Back</button>
+                </div>
+                <div className="hl-game-nav-item">
+                    <h4>Score: {props.score}</h4>
+                </div>
             </nav>
             <section className="hl-game-container">
                 <section className="hl-game-body">
                     <h2>{props.currentNumber}</h2>
-                    {props.previousNumber === "" ? null : <img className="hl-previous-card" src={props.previousCard} alt="Playing card showing the previous number"/>}
-                    <img className="hl-current-card" src={props.currentCard} alt="Playing card showing the current number"/>
+                    {props.previousNumber === "" ? null : <img className="hl-previous-card hl-card-secondary" src={props.previousCard} alt={`Playing card showing the current number: ${props.previousNumber}`}/>}
+                    <img className={props.result === "win" ? "hl-card-win" : props.result === "lose" ? "hl-card-lose" : "hl-card-primary"} src={props.currentCard} alt={`Playing card showing the current number: ${props.currentNumber}`}/>
+                    <img className="hl-next-card hl-card-secondary" src={props.nextCard} alt="Playing card showing the current number"/>
                     <span>{props.result}</span>
                     <div>
                         <ActionButton 

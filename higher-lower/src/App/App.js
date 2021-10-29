@@ -2,9 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import StartScreen from '../StartScreen/StartScreen';
 import GameScreen from '../GameScreen/GameScreen';
-// 
 
 // Playingcard images 
+import playingCard0 from '../Images/card-0-lightMode.png';
 import playingCard1 from '../Images/card-1-lightMode.png';
 import playingCard2 from '../Images/card-2-lightMode.png';
 import playingCard3 from '../Images/card-3-lightMode.png';
@@ -54,11 +54,10 @@ function App() {
   const [screenTransition, setScreenTransition] = useState(false);
 
   // Game numbers being displayed on screen
-  const [newNumber, setNewNumber] = useState("");
   const [currentNumber, setCurrentNumber] = useState("");
   const [previousNumber, setPreviousNumber] = useState("");
-  const [pastNumberList, setPastNumberList] = useState([]);
-  const [winStreak, setWinStreak] = useState(0);
+  const [pastNumbersList, setPastNumbersList] = useState([]);
+  const [score, setScore] = useState(0);
   
   // Result announcement after each round
   const [result, setResult] = useState("");
@@ -77,17 +76,16 @@ function App() {
   }
 
   const handleGameReset = () => {
-    setNewNumber("");
     setPreviousNumber("");
     setCurrentNumber("");
-    setPastNumberList("");
-    setWinStreak("");
+    setPastNumbersList("");
+    setScore("");
     setResult("");
   }
 
   // Images of playing cards that will be rendered according to the number being displayed
   const cards = [
-    "",
+    playingCard0,
     playingCard1,
     playingCard2,
     playingCard3,
@@ -128,14 +126,12 @@ function App() {
 
     if(previousNumber > currentNumber){
       setResult(outcome.win)
-      setWinStreak(winStreak => winStreak + 1);
-      console.log('win')
+      setScore(score => score + 1);
     } else if (previousNumber === currentNumber){
       setResult(outcome.draw)
-      console.log('draw')
     } else {
       setResult(outcome.lose)
-      console.log('draw')
+      setScore(0);
     }
   }
 
@@ -145,11 +141,12 @@ function App() {
 
     if(previousNumber < currentNumber){
       setResult(outcome.win)
-      setWinStreak(winStreak => winStreak + 1);
+      setScore(score => score + 1);
     } else if (previousNumber === currentNumber){
       setResult(outcome.draw);
     } else {
       setResult(outcome.lose)
+      setScore(0);
     }
   }
 
@@ -163,6 +160,8 @@ function App() {
         currentNumber={currentNumber}
         previousCard={cards[previousNumber]}
         currentCard={cards[currentNumber]}
+        nextCard={cards[0]}
+        score={score}
         result={result}
         handleHigher={handleHigher}
         handleLower={handleLower}

@@ -1,6 +1,19 @@
+.hl-game-nav-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  background-color: burlywood;
+}
+
+.hl-game-nav-item {
+  width: 400px;
+  background-color: chocolate;
+}
+
 .hl-game-container {
-  width: 100vh;
-  height: 100vh;
+  width: 100vw;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,4 +22,8 @@
 .hl-game-body {
   width: 1000px;
   height: 400px;
+}
+
+.hl-card-secondary {
+  transform: scale(0.5);
 }
