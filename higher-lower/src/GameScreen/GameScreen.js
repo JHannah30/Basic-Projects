@@ -1,7 +1,5 @@
 import ActionButton from '../ActionButton/ActionButton';
 import './GameScreen.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 function StartPage(props){
     
@@ -9,7 +7,7 @@ function StartPage(props){
         <div>
             <nav className="hl-game-nav-container" onClick={props.exitGame}>
                 <div className="hl-game-nav-item">
-                    <button className="hl-exit-game-button"><img src={props.currentNumber} alt="Back arrow" />Back</button>
+                    <button className="hl-exit-game-button">Back</button>
                 </div>
                 <div className="hl-game-nav-item">
                     <h4>Score: {props.score}</h4>
