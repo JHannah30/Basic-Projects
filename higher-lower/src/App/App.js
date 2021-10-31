@@ -55,7 +55,6 @@ function App() {
   const [screenTransition, setScreenTransition] = useState(false);
 
   // Game numbers being displayed on screen
-  const [newNumber, setNewNumber] = useState("");
   const [currentNumber, setCurrentNumber] = useState("");
   const [previousNumber, setPreviousNumber] = useState("");
   const [pastNumbersList, setPastNumbersList] = useState([]);
@@ -108,7 +107,7 @@ function App() {
     setTimeout(() => {
       setHideGameScreen(false)
       setCurrentNumber(getRandomNumber);
-      console.log(`The starting number is: ${currentNumber}`);
+      console.log(`The current number is: ${currentNumber}`);
     }, 1000);
   }
 
@@ -126,60 +125,34 @@ function App() {
   }
   
   const handleHigher = () => {
-    console.log(`User chose HIGHER`)
-    console.log(`Current number is ${currentNumber}`);
-    
-    setNewNumber(getRandomNumber);
+    setPreviousNumber(currentNumber);
+    setCurrentNumber(getRandomNumber);
 
-    console.log(`New number is: ${newNumber}`)
-    
-    if(currentNumber > newNumber){
+    if(previousNumber > currentNumber){
       setResult(outcome.win)
       setScore(score => score + 1);
-    } else if (currentNumber === newNumber){
+    } else if (previousNumber === currentNumber){
       setResult(outcome.draw)
     } else {
       setResult(outcome.lose)
       setScore(0);
     }
-
-    console.log(`This rounds result: ${result}`)
-
-    setTimeout(() => {
-      setCurrentNumber(newNumber);
-      setPreviousNumber(currentNumber);
-    }, 1000)
   }
 
   const handleLower = () => {
-    console.log(`User chose LOWER`)
-    console.log(`Current number is: ${currentNumber}`)
+    setPreviousNumber(currentNumber);
+    setCurrentNumber(getRandomNumber);
 
-    setNewNumber(getRandomNumber);
-
-    console.log(`New number is: ${newNumber}`)
-
-    if(currentNumber < newNumber){
+    if(previousNumber < currentNumber){
       setResult(outcome.win)
       setScore(score => score + 1);
-    } else if (currentNumber === newNumber){
+    } else if (previousNumber === currentNumber){
       setResult(outcome.draw);
     } else {
       setResult(outcome.lose)
       setScore(0);
     }
-
-    console.log(`This rounds result: ${result}`)
-
-    setTimeout(() => {
-      setCurrentNumber(newNumber);
-      setPreviousNumber(currentNumber);
-    }, 1000)
   }
-
-  useEffect(() => {
-    setCurrentNumber(getRandomNumber);
-  }, [previousNumber]);
 
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
