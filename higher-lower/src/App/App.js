@@ -55,6 +55,7 @@ function App() {
   const [screenTransition, setScreenTransition] = useState(false);
 
   // Game numbers being displayed on screen
+  const [newNumber, setNewNumber] = useState("");
   const [currentNumber, setCurrentNumber] = useState("");
   const [previousNumber, setPreviousNumber] = useState("");
   const [pastNumbersList, setPastNumbersList] = useState([]);
@@ -68,22 +69,6 @@ function App() {
     draw: "It's a tie. Try again!",
   }
   
-  // Triggers CSS transitioning to move between pages
-  const handleScreenTransition = () => {
-    setScreenTransition(true);
-    setTimeout(() => {
-      setScreenTransition(false)
-    }, 2000);
-  }
-
-  const handleGameReset = () => {
-    setPreviousNumber("");
-    setCurrentNumber("");
-    setPastNumbersList("");
-    setScore(0);
-    setResult("");
-  }
-
   // Images of playing cards that will be rendered according to the number being displayed
   const cards = [
     playingCard0,
@@ -100,13 +85,30 @@ function App() {
     playingCard11,
   ];
 
+  // Triggers CSS transitioning to move between pages
+  const handleScreenTransition = () => {
+    setScreenTransition(true);
+    setTimeout(() => {
+      setScreenTransition(false)
+    }, 2000);
+  }
+
+  const handleGameReset = () => {
+    setPreviousNumber("");
+    setCurrentNumber("");
+    setPastNumbersList("");
+    setScore(0);
+    setResult("");
+  }
+
+
   // When the 'start' button is clicked, the start screen begins to fade out and the game screen fades in. A random number is also generated.
   const handleGameStart = () => {
     handleScreenTransition();
     setTimeout(() => {
       setHideGameScreen(false)
       setCurrentNumber(getRandomNumber);
-      console.log(currentNumber);
+      console.log(`The starting number is: ${currentNumber}`);
     }, 1000);
   }
 
@@ -124,6 +126,8 @@ function App() {
   }
   
   const handleHigher = () => {
+    console.log(`User chose HIGHER`)
+    console.log(`Current number is ${currentNumber}`);
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber);
 
@@ -152,6 +156,10 @@ function App() {
       setScore(0);
     }
   }
+
+  useEffect(() => {
+    setCurrentNumber(getRandomNumber);
+  }, [previousNumber]);
 
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
