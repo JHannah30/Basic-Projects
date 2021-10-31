@@ -57,8 +57,9 @@ function App() {
   // Game numbers being displayed on screen
   const [currentNumber, setCurrentNumber] = useState("");
   const [previousNumber, setPreviousNumber] = useState("");
-  const [pastNumbersList, setPastNumbersList] = useState([]);
+  // const [pastNumbersList, setPastNumbersList] = useState([]);
   const [score, setScore] = useState(0);
+
   
   // Result announcement after each round
   const [result, setResult] = useState("");
@@ -95,7 +96,7 @@ function App() {
   const handleGameReset = () => {
     setPreviousNumber("");
     setCurrentNumber("");
-    setPastNumbersList("");
+    // setPastNumbersList("");
     setScore(0);
     setResult("");
   }
