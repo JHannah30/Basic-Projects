@@ -1,7 +1,16 @@
-/* .Higher {
-  background-color: green;
+.hl-game-action-button {
+  width: 100px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #ffffff;
+  border: none;
 }
 
-.Lower {
-  background-color: blue;
-} */
+.hl-game-button-arrow {
+  margin-bottom: 15px;
+  opacity: 0.2;
+}
+
+.hl-game-button-arrow:hover {
+  opacity: 1;
+}

@@ -1,6 +1,10 @@
 import ActionButton from '../ActionButton/ActionButton';
 import './GameScreen.css';
 import HlLogoNav from '../Images/higher-lower-logo-lightMode-small.png';
+import upArrow from '../Images/up-arrow-solid.png';
+import upArrowHover from '../Images/up-arrow-solid-hover.png';
+import downArrow from '../Images/down-arrow-solid.png';
+import downArrowHover from '../Images/down-arrow-solid-hover.png';
 
 
 function StartPage(props){
@@ -9,7 +13,7 @@ function StartPage(props){
         <div>
             <nav className="hl-game-nav-container">
                 <div className="hl-game-nav-item">
-                    <button className="hl-exit-game-btn" onClick={props.exitGame}>Back to menu</button>
+                    <button className="hl-exit-game-btn clickable" onClick={props.exitGame}>Back to menu</button>
                 </div>
                 <div className="hl-game-nav-item">
                     <img src={HlLogoNav} alt="Higher or Lower logo" />
@@ -25,6 +29,8 @@ function StartPage(props){
                         <ActionButton
                         handleResult={props.handleHigher}
                         action="Higher"
+                        icon={upArrow}
+                        iconHover={upArrowHover}
                         />
                     </section>
                     <section className="hl-game-main-item hl-game-playing-cards">
@@ -36,6 +42,8 @@ function StartPage(props){
                         <ActionButton 
                         handleResult={props.handleLower}
                         action= "Lower"
+                        icon={downArrow}
+                        iconHover={downArrowHover}
                         />
                     </section>
                 </section>

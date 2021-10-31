@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import StartScreen from '../StartScreen/StartScreen';
 import GameScreen from '../GameScreen/GameScreen';
 
-// Playingcard images 
+// Playing card images
 import playingCard0 from '../Images/card-0-lightMode.png';
 import playingCard1 from '../Images/card-1-lightMode.png';
 import playingCard2 from '../Images/card-2-lightMode.png';

@@ -9,7 +9,7 @@ function StartPage(props){
                     <img className="hl-logo" src={Logo} alt="higher or lower game logo" />
                 </section>
                 <section className="hl-start-item">
-                    <button className="hl-start-button" onClick={props.startGame}>Play</button>
+                    <button className="hl-start-button clickable" onClick={props.startGame}>Play</button>
                 </section>
             </section>
         </div>

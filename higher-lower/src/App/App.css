@@ -6,6 +6,10 @@ body {
   animation: fadeoutin 2s linear 1 forwards;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 /* Empty class that is used to replace the .fadeInAndOut class when a function is called */
 .empty {
   width: auto;
