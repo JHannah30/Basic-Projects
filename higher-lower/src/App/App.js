@@ -128,33 +128,53 @@ function App() {
   const handleHigher = () => {
     console.log(`User chose HIGHER`)
     console.log(`Current number is ${currentNumber}`);
-    setPreviousNumber(currentNumber);
-    setCurrentNumber(getRandomNumber);
+    
+    setNewNumber(getRandomNumber);
 
-    if(previousNumber > currentNumber){
+    console.log(`New number is: ${newNumber}`)
+    
+    if(currentNumber > newNumber){
       setResult(outcome.win)
       setScore(score => score + 1);
-    } else if (previousNumber === currentNumber){
+    } else if (currentNumber === newNumber){
       setResult(outcome.draw)
     } else {
       setResult(outcome.lose)
       setScore(0);
     }
+
+    console.log(`This rounds result: ${result}`)
+
+    setTimeout(() => {
+      setCurrentNumber(newNumber);
+      setPreviousNumber(currentNumber);
+    }, 1000)
   }
 
   const handleLower = () => {
-    setPreviousNumber(currentNumber);
-    setCurrentNumber(getRandomNumber);
+    console.log(`User chose LOWER`)
+    console.log(`Current number is: ${currentNumber}`)
 
-    if(previousNumber < currentNumber){
+    setNewNumber(getRandomNumber);
+
+    console.log(`New number is: ${newNumber}`)
+
+    if(currentNumber < newNumber){
       setResult(outcome.win)
       setScore(score => score + 1);
-    } else if (previousNumber === currentNumber){
+    } else if (currentNumber === newNumber){
       setResult(outcome.draw);
     } else {
       setResult(outcome.lose)
       setScore(0);
     }
+
+    console.log(`This rounds result: ${result}`)
+
+    setTimeout(() => {
+      setCurrentNumber(newNumber);
+      setPreviousNumber(currentNumber);
+    }, 1000)
   }
 
   useEffect(() => {
