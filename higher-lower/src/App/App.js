@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import StartScreen from '../StartScreen/StartScreen';
 import GameScreen from '../GameScreen/GameScreen';
@@ -21,8 +21,8 @@ function App() {
   
   // Game structure:
   //   - player starts game by pressing start button
-  //     - button generates random number on click and stores value in a variable
-  //     - that variable value is displayed on the screen 
+  //     - button generates random number on click and stores value in state
+  //     - that state value is displayed on the screen (middle card)
 
   //   - player can now decide if they want to go higher or lower 
   //     - lower button generates another random number 
@@ -55,7 +55,7 @@ function App() {
   const [screenTransition, setScreenTransition] = useState(false);
 
   // Game numbers being displayed on screen
-  const [currentNumber, setCurrentNumber] = useState("");
+  const [currentNumber, setCurrentNumber] = useState(null);
   const [previousNumber, setPreviousNumber] = useState("");
   // const [pastNumbersList, setPastNumbersList] = useState([]);
   const [score, setScore] = useState(0);
@@ -101,16 +101,21 @@ function App() {
     setResult("");
   }
 
+  const getRandomNumber = () => {
+    let random = Math.floor( Math.random() * 10 ) + 1;
+    console.log(`Random number function creates: ${random}`)
+    return random;
+  }
 
   // When the 'start' button is clicked, the start screen begins to fade out and the game screen fades in. A random number is also generated.
   const handleGameStart = () => {
     handleScreenTransition();
     setTimeout(() => {
       setHideGameScreen(false)
-      setCurrentNumber(getRandomNumber);
-      console.log(`The current number is: ${currentNumber}`);
+      setCurrentNumber(getRandomNumber());
     }, 1000);
   }
+
 
   // When user exits the game by clicking the 'back' button, the game screen fades out, the game is reset and the start screen is visible again
   const handleGameExit = () => {
@@ -121,39 +126,44 @@ function App() {
     }, 1000);
   }
 
-  const getRandomNumber = () => {
-    return Math.floor( Math.random() * 10 ) + 1;
-  }
-  
   const handleHigher = () => {
-    setPreviousNumber(currentNumber);
-    setCurrentNumber(getRandomNumber);
 
-    if(previousNumber > currentNumber){
-      setResult(outcome.win)
-      setScore(score => score + 1);
+    setPreviousNumber(currentNumber);
+    setCurrentNumber(getRandomNumber());
+    
+    if(previousNumber < currentNumber){
+      setResult("win")
+      setScore(score + 1);
+
     } else if (previousNumber === currentNumber){
-      setResult(outcome.draw)
+      setResult("draw")
     } else {
-      setResult(outcome.lose)
+      setResult("lose")
       setScore(0);
     }
   }
+
+  useEffect(() => {
+    console.log("This is a console log.")
+  }, [])
 
   const handleLower = () => {
     setPreviousNumber(currentNumber);
-    setCurrentNumber(getRandomNumber);
+    setCurrentNumber(getRandomNumber());
 
-    if(previousNumber < currentNumber){
-      setResult(outcome.win)
-      setScore(score => score + 1);
+    if(previousNumber > currentNumber){
+      setResult("win")
+      setScore(score + 1);
     } else if (previousNumber === currentNumber){
-      setResult(outcome.draw);
+      setResult("draw");
     } else {
-      setResult(outcome.lose)
+      setResult("lose")
       setScore(0);
     }
   }
+
+  console.log(`State of current number: ${currentNumber}`)
+
 
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
