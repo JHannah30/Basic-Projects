@@ -59,8 +59,6 @@ function App() {
   const [previousNumber, setPreviousNumber] = useState("");
   // const [pastNumbersList, setPastNumbersList] = useState([]);
   const [score, setScore] = useState(0);
-  const [action, setAction] = useState("");
-
   
   // Result announcement after each round
   const [result, setResult] = useState("");
@@ -124,8 +122,6 @@ function App() {
   const handleHigher = () => {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber());
-    console.log(currentNumber + " is after handleHigher");
-
     
     if(previousNumber < currentNumber){
       setResult("win")
@@ -141,11 +137,6 @@ function App() {
   const handleLower = () => {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber());
-    console.log(currentNumber + " is currentNumber after handleLower");
-    let num1 = previousNumber;
-    let num2 = currentNumber;
-    console.log(num1);
-    console.log(num2);
 
     if(previousNumber > currentNumber){
       setResult("win")
