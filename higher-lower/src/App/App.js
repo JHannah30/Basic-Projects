@@ -59,6 +59,7 @@ function App() {
   const [previousNumber, setPreviousNumber] = useState("");
   // const [pastNumbersList, setPastNumbersList] = useState([]);
   const [score, setScore] = useState(0);
+  const [action, setAction] = useState("");
 
   
   // Result announcement after each round
@@ -98,7 +99,6 @@ function App() {
 
   const getRandomNumber = () => {
     let random = Math.floor( Math.random() * 10 ) + 1;
-    console.log(`Random number function creates: ${random}`)
     return random;
   }
 
@@ -122,48 +122,51 @@ function App() {
   }
 
   const handleHigher = () => {
-
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber());
-    
-    // if(previousNumber < currentNumber){
-    //   setResult("win")
-    //   setScore(score + 1);
-    // } else if (previousNumber === currentNumber){
-    //   setResult("draw")
-    // } else {
-    //   setResult("lose")
-    //   setScore(0);
-    // }
-  }
+    console.log(currentNumber + " is after handleHigher");
 
-  useEffect(() => {
-    console.log("This is a console log.")
-  }, [])
+    
+    if(previousNumber < currentNumber){
+      setResult("win")
+      setScore(score + 1);
+    } else if (previousNumber === currentNumber){
+      setResult("draw")
+    } else {
+      setResult("lose")
+      setScore(0);
+    }
+  }
 
   const handleLower = () => {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber());
+    console.log(currentNumber + " is currentNumber after handleLower");
+    let num1 = previousNumber;
+    let num2 = currentNumber;
+    console.log(num1);
+    console.log(num2);
 
-    // if(previousNumber > currentNumber){
-    //   setResult("win")
-    //   setScore(score + 1);
-    // } else if (previousNumber === currentNumber){
-    //   setResult("draw");
-    // } else {
-    //   setResult("lose")
-    //   setScore(0);
-    // }
+    if(previousNumber > currentNumber){
+      setResult("win")
+      setScore(score + 1);
+    } else if (previousNumber === currentNumber){
+      setResult("draw");
+    } else {
+      setResult("lose")
+      setScore(0);
+    }
   }
 
-  console.log(`State of current number: ${currentNumber}`)
-
+  useEffect(() => {
+    console.log("CurrentNumber is " + currentNumber);
+    console.log("PreviousNumber is " + previousNumber);
+  }, [currentNumber]);
 
   return (
     <div className={screenTransition === true ? "fadeOutAndIn" : "empty"}>
-      {hideGameScreen === true ? 
-      <StartScreen startGame={handleGameStart} /> :
-      <GameScreen 
+      { hideGameScreen && <StartScreen startGame={handleGameStart} /> }
+      { !hideGameScreen && <GameScreen 
         previousNumber={previousNumber}
         currentNumber={currentNumber}
         placeholderCard={cards[11]}
@@ -175,7 +178,7 @@ function App() {
         handleHigher={handleHigher}
         handleLower={handleLower}
         exitGame={handleGameExit}
-      />}
+      /> }
     </div>
   );
 }
