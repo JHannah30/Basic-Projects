@@ -63,11 +63,6 @@ function App() {
   
   // Result announcement after each round
   const [result, setResult] = useState("");
-  const outcome = {
-    win: "You guessed correctly.",
-    lose: "You guessed incorrectly",
-    draw: "It's a tie. Try again!",
-  }
   
   // Images of playing cards that will be rendered according to the number being displayed
   const cards = [
@@ -131,16 +126,15 @@ function App() {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber());
     
-    if(previousNumber < currentNumber){
-      setResult("win")
-      setScore(score + 1);
-
-    } else if (previousNumber === currentNumber){
-      setResult("draw")
-    } else {
-      setResult("lose")
-      setScore(0);
-    }
+    // if(previousNumber < currentNumber){
+    //   setResult("win")
+    //   setScore(score + 1);
+    // } else if (previousNumber === currentNumber){
+    //   setResult("draw")
+    // } else {
+    //   setResult("lose")
+    //   setScore(0);
+    // }
   }
 
   useEffect(() => {
@@ -151,15 +145,15 @@ function App() {
     setPreviousNumber(currentNumber);
     setCurrentNumber(getRandomNumber());
 
-    if(previousNumber > currentNumber){
-      setResult("win")
-      setScore(score + 1);
-    } else if (previousNumber === currentNumber){
-      setResult("draw");
-    } else {
-      setResult("lose")
-      setScore(0);
-    }
+    // if(previousNumber > currentNumber){
+    //   setResult("win")
+    //   setScore(score + 1);
+    // } else if (previousNumber === currentNumber){
+    //   setResult("draw");
+    // } else {
+    //   setResult("lose")
+    //   setScore(0);
+    // }
   }
 
   console.log(`State of current number: ${currentNumber}`)
