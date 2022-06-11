@@ -49,8 +49,6 @@ function StartPage({
                         {previousNumber === "" ? <img className="hl-card-secondary" src={placeholderCard} alt=""/> : <img className="hl-previous-card hl-card-secondary" src={previousCard} alt={`Playing card showing the current number: ${previousNumber}`}/>}
 
                         <img className={result === "win" ? "hl-card-win" : result === "lose" ? "hl-card-lose" : "hl-card-primary"} src={currentCard} alt={`Playing card showing the current number: ${currentNumber}`}/>
-
-                        {/* <img className="hl-next-card hl-card-secondary" src={guessCard} alt="Playing card showing the current number"/> */}
                     </section>
                     <section className="hl-game-main-item">
                         <ActionButton 
@@ -62,6 +60,7 @@ function StartPage({
                     </section>
                 </section>
                 <section>
+                <button className="test">Text appears onHover</button>
                     {/* <p className="hl-game-title">Will it be <span>Higher</span> or <span>Lower</span>?</p> */}
                     <h1>{result}</h1>
                 </section>

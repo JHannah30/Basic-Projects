@@ -36,6 +36,8 @@
 }
 
 .hl-game-score-bg {
+  display: flex;
+  justify-content: flex-start;
   height: 55px;
   border-radius: 50px 0 0 50px;
   color: #ffffff;
@@ -43,7 +45,7 @@
 }
 
 .hl-game-score {
-  margin-left: -100px;
+  margin-left: 50px;
   font-size: 1.2rem;
 }
 
