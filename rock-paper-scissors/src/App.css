@@ -10,12 +10,12 @@
 }
 
 .clickable-option {
-  height: 200px;
-  width: 350px;
-  background-color: aquamarine;
+  height: 150px;
+  width: 250px;
+  background-color: rgb(94, 242, 193);
   margin: 0 10px;
   cursor: pointer;
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
 }
 
 .clickable-option:hover {
