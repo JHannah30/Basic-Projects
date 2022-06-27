@@ -2,22 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const setWindowVar = () => {
+    window.windowVarSet = true;
+  }
+
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main className="App-body centre">
+        <div id="rock" className="clickable-option centre" onClick={setWindowVar}>Rock</div>
+        <div id="paper" className="clickable-option centre" onClick={setWindowVar}>Paper</div>
+        <div id="scissors" className="clickable-option centre" onClick={setWindowVar}>Scissors</div>
+      </main>
     </div>
   );
 }
