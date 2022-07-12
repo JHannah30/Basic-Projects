@@ -1,8 +1,8 @@
 # Various-Projects
 
-During the School of Code part-time bootcamp, I made many projects to learn and practice programming concepts and technologies. Most of them were built in vanilla JS and as the bootcamp progresses so quickly, weren't finished to the standard that I would've liked. I decided to create this repository as a single location for these projects to live, however I'm going to be refactoring them using React.
+During the School of Code part-time bootcamp, we made many projects to learn and practice programming concepts and technologies. Most of them were built in vanilla JS and as the bootcamp progresses so quickly, weren't finished to the standard that I've come to expect from myself today. I decided to create this repository as a single location for these projects to live, however I'm going to be refactoring them using React.
 
-I'll be working on refactoring one project at a time and will be adding more as they are completed.
+I'll be working on refactoring one project at a time, converting them from vanilla JS to React, improving their visual design and aiming for a great user experience. I'll be adding more projects to the repo as I complete them.
 
 
 ## Projects in this Repository (so far)
@@ -26,7 +26,7 @@ Normally, you'd be playing for some sort of money but unfortunately, I'm still w
 
 ---
 
-## Rock, Paper, Scissors
+## Rock, Paper, Scissors (Coming next)
 
 Another game for the all-time list of golden oldies, but with a twist! Just kidding, there's no twist. I don't have the audacity to ruin a classic.
 
