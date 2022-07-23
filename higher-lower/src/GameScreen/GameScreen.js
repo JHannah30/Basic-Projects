@@ -5,6 +5,7 @@ import upArrow from '../Images/up-arrow-solid.png';
 import upArrowHover from '../Images/up-arrow-solid-hover.png';
 import downArrow from '../Images/down-arrow-solid.png';
 import downArrowHover from '../Images/down-arrow-solid-hover.png';
+import { useState } from 'react';
 
 
 function StartPage({
@@ -60,8 +61,7 @@ function StartPage({
                     </section>
                 </section>
                 <section>
-                <button className="test">Text appears onHover</button>
-                    {/* <p className="hl-game-title">Will it be <span>Higher</span> or <span>Lower</span>?</p> */}
+                    <p className="hl-game-title">Will it be <span>Higher</span> or <span>Lower</span>?</p>
                     <h1>{result}</h1>
                 </section>
             </main>
