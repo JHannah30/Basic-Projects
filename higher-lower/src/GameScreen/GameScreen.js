@@ -5,7 +5,6 @@ import upArrow from '../Images/up-arrow-solid.png';
 import upArrowHover from '../Images/up-arrow-solid-hover.png';
 import downArrow from '../Images/down-arrow-solid.png';
 import downArrowHover from '../Images/down-arrow-solid-hover.png';
-import { useState } from 'react';
 
 
 function StartPage({
